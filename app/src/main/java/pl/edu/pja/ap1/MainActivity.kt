@@ -3,6 +3,7 @@ package pl.edu.pja.ap1
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -44,10 +45,13 @@ class MainActivity : AppCompatActivity() {
         startActivityForResult(Intent(this, AddActivity::class.java), REQ)
     }
 
-//    fun urStara(view: View) {
-//        println("TWOJA STARA")
-//        startActivityForResult(Intent(this, AddActivity::class.java), REQ)
-//    }
+    fun urStara(view: View) {
+        println("TWOJA STARA")
+        val intent = Intent(this, AddActivity::class.java)
+        var xd = Income(ContextCompat.getDrawable(applicationContext, R.drawable.pizza),"Smyk", 105.0, Date(), Category.Health)
+        intent.putExtra("name", xd)
+        startActivityForResult(Intent(this, AddActivity::class.java), REQ)
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQ) {

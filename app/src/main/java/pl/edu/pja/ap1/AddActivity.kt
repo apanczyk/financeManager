@@ -29,6 +29,11 @@ class AddActivity : AppCompatActivity() {
     private val imageAdapter by lazy { ImageAdapter(drawables) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val myObject = intent.getSerializableExtra("name")
+        if(myObject != null) {
+
+        }
+
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setupImages()
