@@ -6,12 +6,14 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import pl.edu.pja.ap1.adapter.ImageAdapter
 import pl.edu.pja.ap1.databinding.ActivityAddBinding
 import pl.edu.pja.ap1.model.Category
 import pl.edu.pja.ap1.model.Income
+import pl.edu.pja.ap1.model.Operation
 import java.util.*
 
 
@@ -29,13 +31,14 @@ class AddActivity : AppCompatActivity() {
     private val imageAdapter by lazy { ImageAdapter(drawables) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val myObject = intent.getSerializableExtra("name")
-        if(myObject != null) {
-
-        }
+        var myObject = intent.getSerializableExtra("bodyguard")
+        val op = if(myObject != null) intent.getSerializableExtra("bodyguard") as Operation
+            else Income("ContextCompat.getDrawable(applicationContext, R.drawable.pizza)",
+            "Smyk", 105.0.toString(), Date(), Category.Health)
 
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        binding.operation = op
         setupImages()
         setResult(Activity.RESULT_CANCELED)
     }
@@ -52,6 +55,11 @@ class AddActivity : AppCompatActivity() {
     }
 
     fun onSave(view: View) {
+        val myObject = intent.getSerializableExtra("name")
+        val newObject = myObject
+        if(myObject != null) {
+//            Shared.operationlist.find { it == myObject }?.iLike
+        }
         val name = binding.name.text.toString()
         val ingredients = binding.ingredients.text.toString().split("\n")
         val drawable = imageAdapter.selectedItem?.let {
@@ -62,7 +70,7 @@ class AddActivity : AppCompatActivity() {
             Toast.makeText(this, "Nie wybrałeś miniaturki", Toast.LENGTH_LONG).show()
             return
         }
-        val operation = Income(drawable, name, 10.0, Date(), Category.Bills)
+        val operation = Income("drawable", name, 10.0.toString(), Date(), Category.Bills)
         Shared.operationlist.add(operation)
 
         val intent = Intent().apply {

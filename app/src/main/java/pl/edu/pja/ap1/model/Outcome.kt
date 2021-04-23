@@ -6,9 +6,9 @@ import pl.edu.pja.ap1.model.Operation
 import java.util.*
 
 data class Outcome(
-        override var drawable: Drawable?,
+        override var drawable: String?,
         override var place: String,
-        override var cost: Double,
+        override var cost: String,
         override var date: Date,
         override var category: Category
 ) : Operation()
