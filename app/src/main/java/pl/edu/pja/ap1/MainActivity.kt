@@ -46,15 +46,9 @@ class MainActivity : AppCompatActivity() {
         startActivityForResult(Intent(this, AddActivity::class.java), REQ)
     }
 
-//    fun urStara(view: View) {
-//        val intent = Intent(this, AddActivity::class.java)
-//        println("\n[================]\n${operationAdapter.selectedItem}\n[================]\n")
-////        operationAdapter.changeSelection()
-//        if(operationAdapter.selectedItem != null)
-//            intent.putExtra("bodyguard", Shared.operationlist[operationAdapter.selectedItem!!])
-//
-//        startActivityForResult(intent, REQ)
-//    }
+    fun summary(view: View) {
+        startActivityForResult(Intent(this, AddActivity::class.java), REQ)
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQ) {
