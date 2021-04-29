@@ -1,11 +1,13 @@
 package pl.edu.pja.ap1.model
 
+import android.graphics.drawable.Drawable
 import androidx.databinding.BaseObservable
 import java.io.Serializable
 import java.util.*
 
 
 data class OperationDao(
+    var drawable: Drawable?,
     var place: String,
     var cost: String,
     var date: String,

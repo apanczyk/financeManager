@@ -23,7 +23,7 @@ class OperationItem(val binding: ItemOperationBinding): RecyclerView.ViewHolder(
             category.text = operation.category.toString()
             if(operation is Income) cost.setTextColor(Color.GREEN)
             else cost.setTextColor(Color.RED)
-//            photo.setImageDrawable(operation.drawable)
+            photo.setImageDrawable(operation.drawable)
         }
     }
 }

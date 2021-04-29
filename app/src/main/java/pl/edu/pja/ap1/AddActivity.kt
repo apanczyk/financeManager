@@ -44,12 +44,12 @@ class AddActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         var myObject = intent.getSerializableExtra("operationId")
         val op = if(myObject != null) Shared.operationlist.get(myObject.toString().toInt())
-            else Income("ContextCompat.getDrawable(applicationContext, R.drawable.pizza)",
+            else Income(ContextCompat.getDrawable(applicationContext, R.drawable.pizza),
             "Smyk", 105.0, Calendar.getInstance().time, Category.Health)
 
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        binding.operation = OperationDao(op.place, op.cost.toString(), SimpleDateFormat("dd/MM/yyyy").format(op.date).toString(), op.category.toString())
+        binding.operation = OperationDao(ContextCompat.getDrawable(applicationContext, R.drawable.spaghetti),op.place, op.cost.toString(), SimpleDateFormat("dd/MM/yyyy").format(op.date).toString(), op.category.toString())
         setupImages()
         setResult(Activity.RESULT_CANCELED)
     }
@@ -82,13 +82,15 @@ class AddActivity : AppCompatActivity() {
 //                twojaStara.category = binding.categoryEdit.text
             twojaStara.cost = binding.costEdit.text.toString().toDouble()
             twojaStara.place = binding.name.text.toString()
-            twojaStara.date = binding.editTextDate.text
+//            twojaStara.date = binding.editTextDate.text
 //                    operation.date = Date.(binding.editTextDate.toString(), "dd/MM/yyyy")
 
 //            val operation = Shared.operationlist.find { it == myObject }
         } else {
             val name = binding.name.text.toString()
-//        val ingredients = binding.ingredients.text.toString().split("\n")
+            val cost = binding.costEdit.text.toString().toDouble()
+            val date = binding.editTextDate.toString()
+
             val drawable = imageAdapter.selectedItem?.let {
                 drawables[it]
             }
@@ -97,7 +99,7 @@ class AddActivity : AppCompatActivity() {
                 Toast.makeText(this, "Nie wybrałeś miniaturki", Toast.LENGTH_LONG).show()
                 return
             }
-            val operation = Income("drawable", name,105.0, Calendar.getInstance().time, Category.Bills)
+            val operation = Income(drawable, name,binding.costEdit.text.toString().toDouble(), Calendar.getInstance().time, Category.Bills)
             Shared.operationlist.add(operation)
         }
         val name = binding.name.text.toString()

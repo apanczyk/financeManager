@@ -4,7 +4,7 @@ import android.graphics.drawable.Drawable
 import androidx.databinding.Bindable
 import java.util.*
 
-class Income(override var drawable: String?,
+class Income(override var drawable: Drawable?,
              override var place: String,
              override var cost: Double,
              override var date: Date,
