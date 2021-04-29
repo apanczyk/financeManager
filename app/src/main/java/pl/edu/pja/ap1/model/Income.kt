@@ -6,7 +6,9 @@ import java.util.*
 
 class Income(override var drawable: String?,
              override var place: String,
-             override var cost: String,
+             override var cost: Double,
              override var date: Date,
              override var category: Category) : Operation() {
+
+
 }

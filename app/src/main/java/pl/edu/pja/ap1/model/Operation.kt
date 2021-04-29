@@ -5,13 +5,14 @@ import android.graphics.drawable.Drawable
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import java.io.Serializable
+import java.time.LocalDate
 import java.util.*
 
 
 abstract class Operation : BaseObservable(), Serializable  {
     abstract var drawable: String?
     abstract var place: String
-    abstract var cost: String
+    abstract var cost: Double
     abstract var date: Date
     abstract var category: Category
 }

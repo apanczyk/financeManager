@@ -2,8 +2,10 @@ package pl.edu.pja.ap1
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,6 +13,7 @@ import pl.edu.pja.ap1.adapter.OperationAdapter
 import pl.edu.pja.ap1.databinding.ActivityMainBinding
 import pl.edu.pja.ap1.model.*
 import java.text.FieldPosition
+import java.time.LocalDate
 import java.util.*
 
 
@@ -66,7 +69,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun seedData() {
         Shared.operationlist.add(Income("ContextCompat.getDrawable(applicationContext, R.drawable.pizza)","TESTOWE ELO ELO",
-            105.0.toString(), Date(), Category.Health))
+                105.0, Calendar.getInstance().time, Category.Health))
 //        Shared.operationlist.add(Income(ContextCompat.getDrawable(applicationContext, R.drawable.pierogi),"Wierzejki",
 //            105.0.toString(), Date(), Category.Food))
 //        Shared.operationlist.add(Income(ContextCompat.getDrawable(applicationContext, R.drawable.pumpkin),"Prąd",
