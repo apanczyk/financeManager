@@ -49,7 +49,7 @@ class AddActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        binding.operation = OperationDao(ContextCompat.getDrawable(applicationContext, R.drawable.spaghetti),op.place, op.cost.toString(), SimpleDateFormat("dd/MM/yyyy").format(op.date).toString(), op.category.toString())
+        binding.operation = OperationDao(op.drawable,op.place, op.cost.toString(), SimpleDateFormat("dd/MM/yyyy").format(op.date).toString(), op.category.toString())
         setupImages()
         setResult(Activity.RESULT_CANCELED)
     }

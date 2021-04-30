@@ -1,5 +1,7 @@
 package pl.edu.pja.ap1.adapter
 
+import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -49,9 +51,26 @@ class OperationAdapter(private val context: AppCompatActivity) : RecyclerView.Ad
                 val intent = Intent(context, AddActivity::class.java)
                 intent.putExtra("operationId", holder.layoutPosition)
                 context.startActivityForResult(intent,REQ)
+            }}.also {holder ->
+
+                binding.root.setOnLongClickListener {
+                    val place = holder.layoutPosition
+                    context.setResult(Activity.RESULT_CANCELED)
+                    val alertDialog: AlertDialog.Builder = AlertDialog.Builder(context)
+                    alertDialog.setTitle("Czy usunąć tą operacje?")
+                    alertDialog.setPositiveButton("Usuń") { dialog, id ->
+                        Shared.operationlist.removeAt(place)
+                        context.recreate()
+                    }
+                    alertDialog.setNegativeButton("Nie") { dialog, id ->
+                    }
+                    val alert = alertDialog.create()
+                    alert.setCanceledOnTouchOutside(false)
+                    alert.show()
+                    return@setOnLongClickListener true;
+                }
             }
         }
-    }
 
     override fun getItemCount(): Int = operations.size
 

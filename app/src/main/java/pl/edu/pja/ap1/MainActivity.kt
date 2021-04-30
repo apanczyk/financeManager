@@ -30,6 +30,10 @@ class MainActivity : AppCompatActivity() {
         }
         refreshSummary()
     }
+    override fun onResume() {
+        super.onResume()
+        operationAdapter.operations = Shared.operationlist
+    }
 
     private fun setupOperationList() {
         binding.operationlist.apply {
@@ -38,13 +42,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        operationAdapter.operations = Shared.operationlist
-    }
 
     fun clicked(view: View) {
-        println("twoja stara")
         startActivityForResult(Intent(this, AddActivity::class.java), REQ)
     }
 
