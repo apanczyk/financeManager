@@ -43,13 +43,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun clicked(view: View) {
-        startActivityForResult(Intent(this, AddActivity::class.java), REQ)
-    }
-
-    fun summary(view: View) {
-        startActivityForResult(Intent(this, AddActivity::class.java), REQ)
-    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQ) {
@@ -76,10 +69,18 @@ class MainActivity : AppCompatActivity() {
         binding.summary.text = costs.toInt().toString()
     }
 
+    fun clicked(view: View) {
+        startActivityForResult(Intent(this, AddActivity::class.java), REQ)
+    }
+
+    fun summary(view: View) {
+        startActivityForResult(Intent(this, SummaryActivity::class.java), REQ)
+    }
+
     private fun seedData() {
-        Shared.operationlist.add(Income(ContextCompat.getDrawable(applicationContext, R.drawable.spaghetti),"TESTOWE ELO ELO",
+        Shared.operationlist.add(Income(ContextCompat.getDrawable(applicationContext, R.drawable.spaghetti),"Nienawidze poniedzialkow",
                 22.0, Calendar.getInstance().time, Category.Health))
-        Shared.operationlist.add(Income(ContextCompat.getDrawable(applicationContext, R.drawable.pierogi),"Wierzejki",
+        Shared.operationlist.add(Outcome(ContextCompat.getDrawable(applicationContext, R.drawable.pierogi),"Wierzejki",
             11.0, Date(), Category.Food))
         Shared.operationlist.add(Income(ContextCompat.getDrawable(applicationContext, R.drawable.pumpkin),"Prąd",
             55.0, Date(), Category.Bills))

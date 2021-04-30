@@ -19,6 +19,9 @@
         <activity android:name=".AddActivity">
 
         </activity>
+        <activity android:name=".SummaryActivity">
+
+        </activity>
     </application>
 
 </manifest>
