@@ -21,7 +21,7 @@ class OperationItem(val binding: ItemOperationBinding): RecyclerView.ViewHolder(
         binding.apply {
             name.text = operation.place
             cost.text = operation.cost.toString()
-            date.text = SimpleDateFormat("dd/MM/yyyy").format(operation.date)
+            date.text = SimpleDateFormat("dd/MM/yyyy").format(operation.date.time)
             category.text = operation.category.toString()
             if(operation is Income) cost.setTextColor(Color.GREEN)
             else cost.setTextColor(Color.RED)

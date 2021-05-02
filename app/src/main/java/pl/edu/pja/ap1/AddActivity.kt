@@ -1,31 +1,21 @@
 package pl.edu.pja.ap1
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.DatePickerDialog
-import android.app.Dialog
-import android.app.TimePickerDialog
 import android.content.Intent
 import android.os.Bundle
-import android.text.format.DateFormat.is24HourFormat
 import android.view.View
-import android.widget.DatePicker
-import android.widget.TimePicker
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
-import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import pl.edu.pja.ap1.adapter.ImageAdapter
 import pl.edu.pja.ap1.databinding.ActivityAddBinding
 import pl.edu.pja.ap1.model.Category
 import pl.edu.pja.ap1.model.Income
-import pl.edu.pja.ap1.model.Operation
 import pl.edu.pja.ap1.model.OperationDao
-import java.text.DateFormat
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.*
 
 class AddActivity : AppCompatActivity() {
@@ -45,7 +35,7 @@ class AddActivity : AppCompatActivity() {
         var myObject = intent.getSerializableExtra("operationId")
         val op = if(myObject != null) Shared.operationlist.get(myObject.toString().toInt())
             else Income(ContextCompat.getDrawable(applicationContext, R.drawable.pizza),
-            "Smyk", 105.0, Calendar.getInstance().time, Category.Health)
+            "Smyk", 105.0, Calendar.getInstance(), Category.Health)
 
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -78,10 +68,9 @@ class AddActivity : AppCompatActivity() {
     fun onSave(view: View) {
         val myObject = intent.getSerializableExtra("operationId")
         if(myObject != null) {
-            val twojaStara = Shared.operationlist.get(myObject.toString().toInt())
-//                twojaStara.category = binding.categoryEdit.text
-            twojaStara.cost = binding.costEdit.text.toString().toDouble()
-            twojaStara.place = binding.name.text.toString()
+            val operations = Shared.operationlist.get(myObject.toString().toInt())
+            operations.cost = binding.costEdit.text.toString().toDouble()
+            operations.place = binding.name.text.toString()
 //            twojaStara.date = binding.editTextDate.text
 //                    operation.date = Date.(binding.editTextDate.toString(), "dd/MM/yyyy")
 
@@ -99,7 +88,7 @@ class AddActivity : AppCompatActivity() {
                 Toast.makeText(this, "Nie wybrałeś miniaturki", Toast.LENGTH_LONG).show()
                 return
             }
-            val operation = Income(drawable, name,binding.costEdit.text.toString().toDouble(), Calendar.getInstance().time, Category.Bills)
+            val operation = Income(drawable, name,binding.costEdit.text.toString().toDouble(), Calendar.getInstance(), Category.Bills)
             Shared.operationlist.add(operation)
         }
         val name = binding.name.text.toString()

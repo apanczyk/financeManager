@@ -13,6 +13,6 @@ abstract class Operation   {
     abstract var drawable: Drawable?
     abstract var place: String
     abstract var cost: Double
-    abstract var date: Date
+    abstract var date: Calendar
     abstract var category: Category
 }
