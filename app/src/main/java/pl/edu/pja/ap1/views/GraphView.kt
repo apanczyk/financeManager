@@ -15,6 +15,7 @@ class GraphView(context: Context, attributeSet: AttributeSet) : View(context, at
     private var yMin = 0
     private var yMax = 0
     private var yPos = 0
+    private var yPosRatio = 0f
 
     private val dataPointLinePaint = Paint().apply {
         color = Color.GREEN
@@ -35,6 +36,8 @@ class GraphView(context: Context, attributeSet: AttributeSet) : View(context, at
 
         val minimum = newDataSet.minBy { it.yVal }?.yVal ?: 0
         yPos = if(minimum < 0) yMax - minimum else yMax
+        val wtf = yMax - minimum
+        yPosRatio = if(minimum < 0) yMax.toFloat() / (yMax - minimum) else 1f
         dataSet.clear()
         dataSet.addAll(newDataSet)
         invalidate()
@@ -47,9 +50,9 @@ class GraphView(context: Context, attributeSet: AttributeSet) : View(context, at
             if (index < dataSet.size - 1) {
                 val nextDataPoint = dataSet[index + 1]
                 val startX = currentDataPoint.xVal.toRealX()
-                val startY = currentDataPoint.yVal.toRealY().convertToNormalValues()
+                val startY = currentDataPoint.yVal.convertToNormalValues().toRealY()
                 val endX = nextDataPoint.xVal.toRealX()
-                val endY = nextDataPoint.yVal.toRealY().convertToNormalValues()
+                val endY = nextDataPoint.yVal.convertToNormalValues().toRealY()
 
                 dataPointLinePaint.color = if(currentDataPoint.yVal < 0) Color.RED else Color.GREEN
 
@@ -58,13 +61,13 @@ class GraphView(context: Context, attributeSet: AttributeSet) : View(context, at
         }
 
         canvas.drawLine(0f, 0f, 0f, height.toFloat(), axisLinePaint)
-        canvas.drawLine(0f, yPos.toFloat(), width.toFloat(), yPos.toFloat(), axisLinePaint)
+        canvas.drawLine(0f, yPosRatio*height, width.toFloat(), yPosRatio*height, axisLinePaint)
     }
 
 
     private fun Int.toRealX() = toFloat() / xMax * width
-    private fun Int.toRealY() = toFloat() / yPos * height
-    private fun Float.convertToNormalValues(): Float = yPos - toFloat()
+    private fun Int.toRealY() = (toFloat() / yPos  * height) * yPosRatio
+    private fun Int.convertToNormalValues(): Int = ((yPos - toFloat())).toInt()
 }
 
 data class DataPoint(

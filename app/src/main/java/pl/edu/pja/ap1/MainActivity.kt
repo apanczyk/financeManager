@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity() {
             11.0, calendar.clone() as Calendar, Category.Food))
         calendar.set(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),1)
         Shared.operationlist.add(Income(ContextCompat.getDrawable(applicationContext, R.drawable.pumpkin),"Prąd",
-            -55.0, calendar.clone() as Calendar, Category.Bills))
+            55.0, calendar.clone() as Calendar, Category.Bills))
         calendar.set(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),12)
         Shared.operationlist.add(Income(ContextCompat.getDrawable(applicationContext, R.drawable.rice),"Salto",
             30.0, calendar.clone() as Calendar, Category.Entertainment))

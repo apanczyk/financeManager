@@ -30,7 +30,7 @@ class ImageAdapter(val drawables: List<Drawable>) : RecyclerView.Adapter<Image>(
         holder.binding.frame.visibility = if (selectedItem == position) View.VISIBLE else View.GONE
     }
 
-    fun changeSelection(position: Int) {
+    private fun changeSelection(position: Int) {
         val oldOne = selectedItem
         selectedItem = position
         oldOne?.let {
