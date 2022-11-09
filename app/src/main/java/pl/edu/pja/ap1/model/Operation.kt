@@ -10,7 +10,6 @@ import java.util.*
 
 
 abstract class Operation   {
-    abstract var drawable: Drawable?
     abstract var place: String
     abstract var cost: Double
     abstract var date: Calendar

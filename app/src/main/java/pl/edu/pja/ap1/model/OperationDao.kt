@@ -7,7 +7,6 @@ import java.util.*
 
 
 data class OperationDao(
-    var drawable: Drawable?,
     var place: String,
     var cost: String,
     var date: String,

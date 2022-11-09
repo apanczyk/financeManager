@@ -7,7 +7,6 @@ import java.time.LocalDate
 import java.util.*
 
 data class Outcome(
-        override var drawable: Drawable?,
         override var place: String,
         override var cost: Double,
         override var date: Calendar,
